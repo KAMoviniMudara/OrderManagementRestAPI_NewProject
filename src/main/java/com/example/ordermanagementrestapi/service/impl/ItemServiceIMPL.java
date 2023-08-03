@@ -5,6 +5,7 @@ import com.example.ordermanagementrestapi.dto.request.RequestItemSaveDTO;
 import com.example.ordermanagementrestapi.entity.Item;
 import com.example.ordermanagementrestapi.repo.ItemRepo;
 import com.example.ordermanagementrestapi.service.ItemService;
+import com.example.ordermanagementrestapi.util.mappers.ItemMapper;
 import javassist.NotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
