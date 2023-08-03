@@ -13,40 +13,53 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ItemServiceIMPL implements ItemService {
+public class ItemServiceIMPL implements ItemService  {
     @Autowired
     private ItemRepo itemRepo;
+
     @Autowired
     private ModelMapper modelMapper;
+
     @Autowired
     private ItemMapper itemMapper;
 
     @Override
-    public void addCustomer(RequestItemSaveDTO requestItemSaveDTO){
-        Item item =itemMapper.requestDtoToEntity(requestItemSaveDTO);
+    public void addCustomer(RequestItemSaveDTO requestItemSaveDTO) {
+
+
+        Item item = itemMapper.requestDtoToEntity(requestItemSaveDTO);
         item.setActiveState(false);
         if(!itemRepo.existsById(item.getItemID())){
             itemRepo.save(item);
-            System.out.println("saved");
+            System.out.println("Saved");
         }
+
     }
+
     @Override
-    public List<ItemDTO> getItemByName(String itemName){
+    public List<ItemDTO> getItemByName(String itemName) {
+
         List<Item> items = itemRepo.findAllByItemName(itemName);
+
         List<ItemDTO> itemDTOS = itemMapper.requestEntityListToDtoList(items);
+
         return itemDTOS;
     }
 
     @Override
-    public List<ItemDTO> getAllItems(){
-        List<Item> items= itemRepo.findAllByActiveStateIs(false);
+    public List<ItemDTO> getAllItems() {
 
-        if(items.size()>0){
-            List<ItemDTO>itemDTOS = itemMapper.requestEntityListToDtoList(items);
+        List<Item> items = itemRepo.findAllByActiveStateIs(false);
+
+        if(items.size()>0) {
+            List<ItemDTO> itemDTOS = itemMapper.requestEntityListToDtoList(items);
             return itemDTOS;
-        }else{
+        }else {
             throw new NotFoundException("No data found");
         }
     }
+
+
+
 
 }
