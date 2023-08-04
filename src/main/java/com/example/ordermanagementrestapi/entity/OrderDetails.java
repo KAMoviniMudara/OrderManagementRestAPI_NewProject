@@ -19,24 +19,28 @@ import javax.persistence.*;
 @Data
 public class OrderDetails {
     @Id
-    @Column(name = "order_details_id",length = 45)
+    @Column(name = "order_details_id", length = 45)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int orderDetailsID;
 
-    @Column(name = "item_name",length = 100,nullable = false)
+    @Column(name = "item_name", length = 100, nullable = false)
     private String itemName;
 
-    @Column(name = "qty",length = 50,nullable = false)
+    @Column(name = "qty", length = 50, nullable = false)
     private double qty;
 
-    @Column(name = "amount",nullable = false)
+    @Column(name = "amount", nullable = false)
     private Double amount;
 
     @ManyToOne
-    @JoinColumn(name = "order_id",nullable = false)
+    @JoinColumn(name="order_id", nullable=false)
     private Order orders;
 
     @ManyToOne
-    @JoinColumn(name = "item_id",nullable = false)
+    @JoinColumn(name="item_id", nullable=false)
     private Item items;
+
+
+
+
 }

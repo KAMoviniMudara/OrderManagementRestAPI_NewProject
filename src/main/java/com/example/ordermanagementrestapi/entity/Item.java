@@ -22,30 +22,32 @@ import java.util.Set;
 public class Item {
 
     @Id
-    @Column(name = "item_id",length = 45)
+    @Column(name = "item_id", length = 45)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int itemID;
 
-    @Column(name = "item_name",length = 100,nullable = false)
+    @Column(name = "item_name", length = 100, nullable = false)
     private String itemName;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "measure_type",length = 25,nullable = false)
+    @Column(name = "measure_tyoe", length = 25, nullable = false)
     private MeasuringUnitType measuringUnitType;
 
-    @Column(name = "balance_qty",length = 50,nullable = false)
+    @Column(name = "balance_qty", length = 50, nullable = false)
     private double balanceQty;
 
-    @Column(name = "supplier_price",length = 50,nullable = false)
+    @Column(name = "supplier_price", length = 50, nullable = false)
     private double supplierPrice;
 
-    @Column(name = "seller_price",length = 50,nullable = false)
+    @Column(name = "seller_price", length = 50, nullable = false)
     private double sellerPrice;
 
-    @Column(name = "active_state",columnDefinition = "TINYINT default 1")
+    @Column(name = "active_state", columnDefinition = "TINYINT default 1")
     private boolean activeState;
 
-    @OneToMany(mappedBy = "items")
+
+    @OneToMany(mappedBy="items")
     private Set<OrderDetails> orderDetails;
+
 
 }

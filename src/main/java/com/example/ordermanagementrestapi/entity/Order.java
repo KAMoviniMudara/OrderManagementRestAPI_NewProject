@@ -21,29 +21,30 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 public class Order {
+
     @Id
-    @Column(name = "order_id",length = 45)
+    @Column(name = "order_id", length = 45)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int orderID;
 
     @Column(name = "order_date", columnDefinition = "DATETIME")
     private Date date;
 
-    @Column(name="total",nullable = false)
+    @Column(name = "total", nullable = false)
     private Double total;
 
     @ManyToOne
-    @Column(name = "customer_id",nullable = false)
+    @JoinColumn(name="customer_id", nullable=false)
     private Customer customers;
 
-    @OneToMany(mappedBy = "orders")
+    @OneToMany(mappedBy="orders")
     private Set<OrderDetails> orderDetails;
 
     public Order(Date date, Double total, Customer customers) {
-
         this.date = date;
         this.total = total;
         this.customers = customers;
-
     }
 }
+
+
