@@ -6,15 +6,14 @@ import com.example.ordermanagementrestapi.entity.Item;
 import com.example.ordermanagementrestapi.repo.ItemRepo;
 import com.example.ordermanagementrestapi.service.ItemService;
 import com.example.ordermanagementrestapi.util.mappers.ItemMapper;
-import javassist.NotFoundException;
+import com.example.ordermanagementrestapi.exception.NotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 @Service
-public class ItemServiceIMPL implements ItemService  {
+public class ItemServiceIMPL implements ItemService {
     @Autowired
     private ItemRepo itemRepo;
 
@@ -26,7 +25,6 @@ public class ItemServiceIMPL implements ItemService  {
 
     @Override
     public void addCustomer(RequestItemSaveDTO requestItemSaveDTO) {
-
 
         Item item = itemMapper.requestDtoToEntity(requestItemSaveDTO);
         item.setActiveState(false);
