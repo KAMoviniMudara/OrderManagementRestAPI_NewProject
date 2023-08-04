@@ -30,7 +30,7 @@ public class Item {
     private String itemName;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "measure_tyoe", length = 25, nullable = false)
+    @Column(name = "measure_type", length = 25, nullable = false)
     private MeasuringUnitType measuringUnitType;
 
     @Column(name = "balance_qty", length = 50, nullable = false)
