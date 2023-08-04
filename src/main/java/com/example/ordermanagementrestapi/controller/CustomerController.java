@@ -13,6 +13,7 @@ import java.util.List;
 public class CustomerController {
     @Autowired
     private CustomerService customerService;
+    @PostMapping(path="/save")
     public String SaveCustomer(@RequestBody CustomerDTO customerDTO){
         customerService.addCustomer(customerDTO);
         return "Saved";
