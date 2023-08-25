@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/v1/customer")
@@ -50,8 +51,10 @@ public class CustomerController {
     }
 
     @PatchMapping(path = "/deactivate-customer-by-name")
-    public String deactivateCustomerByName(@RequestBody CustomerDTO customerDTO) {
-        String deactivateStatus = customerService.deactivateCustomerByName(customerDTO.getCustomerName());
+    public String deactivateCustomerByName(@RequestBody Map<String, String> requestBody) {
+        String customerName = requestBody.get("customerName");
+
+        String deactivateStatus = customerService.deactivateCustomerByName(customerName);
         return deactivateStatus;
     }
 

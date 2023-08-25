@@ -128,16 +128,16 @@ public class CustomerServiceIMPL implements CustomerService {
         try {
             Customer customer = customerRepo.findByCustomerName(customerName);
 
-            if (customer != null) {
-                customer.setActiveState(false);
-                customerRepo.save(customer);
-
-                return "Customer Deactivated by Name";
-            } else {
-                return "Customer Not Found by Name";
+            if (customer == null) {
+                return "Customer Not Found";
             }
+
+            customer.setActiveState(false);
+            customerRepo.save(customer);
+
+            return "Customer Deactivated";
         } catch (Exception e) {
-            return "Deactivation by Name Failed";
+            return "Deactivation Failed";
         }
     }
 }
