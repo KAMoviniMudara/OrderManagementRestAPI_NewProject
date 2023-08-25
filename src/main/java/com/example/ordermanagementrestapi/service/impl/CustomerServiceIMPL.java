@@ -105,9 +105,39 @@ public class CustomerServiceIMPL implements CustomerService {
         }
     }
 
+    @Override
+    public String updateCustomerByName(CustomerDTO customerDTO) {
+        try {
+            Customer customer = customerRepo.findByCustomerName(customerDTO.getCustomerName());
 
+            if (customer != null) {
+                customer.setCustomerAddress(customerDTO.getCustomerAddress());
+                customer.setSalary(customerDTO.getSalary());
+                customerRepo.save(customer);
 
+                return "Customer Updated by Name";
+            } else {
+                return "Customer Not Found by Name";
+            }
+        } catch (Exception e) {
+            return "Update by Name Failed";
+        }
+    }
+    @Override
+    public String deactivateCustomerByName(String customerName) {
+        try {
+            Customer customer = customerRepo.findByCustomerName(customerName);
 
+            if (customer != null) {
+                customer.setActiveState(false);
+                customerRepo.save(customer);
 
-
+                return "Customer Deactivated by Name";
+            } else {
+                return "Customer Not Found by Name";
+            }
+        } catch (Exception e) {
+            return "Deactivation by Name Failed";
+        }
+    }
 }

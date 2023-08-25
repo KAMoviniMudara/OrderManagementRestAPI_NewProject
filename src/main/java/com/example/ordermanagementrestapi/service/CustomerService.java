@@ -1,6 +1,7 @@
 package com.example.ordermanagementrestapi.service;
 
 import com.example.ordermanagementrestapi.dto.CustomerDTO;
+import com.example.ordermanagementrestapi.entity.Customer;
 
 import java.util.List;
 
@@ -10,4 +11,11 @@ public interface CustomerService {
     CustomerDTO getCustomerByID(int customerId);
     List<CustomerDTO> getAllCustomers();
     String deleteCustomer(int customerID);
+
+   
+
+    String deactivateCustomerByName(String customerName);
+
+    String updateCustomerByName(CustomerDTO customerDTO);
 }
+

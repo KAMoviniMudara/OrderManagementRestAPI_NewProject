@@ -11,34 +11,49 @@ import java.util.List;
 @RequestMapping("api/v1/customer")
 @CrossOrigin
 public class CustomerController {
+
     @Autowired
     private CustomerService customerService;
-    @PostMapping(path="/save")
-    public String SaveCustomer(@RequestBody CustomerDTO customerDTO){
+
+    @PostMapping(path = "/save")
+    public String saveCustomer(@RequestBody CustomerDTO customerDTO) {
         customerService.addCustomer(customerDTO);
         return "Saved";
     }
-    @PostMapping(path = "/update")
-    public String UpdateCustomer(@RequestBody CustomerDTO customerDTO){
-        String updated = customerService.updateCustomer(customerDTO);
-        return updated;
+
+    @PostMapping(path = "/update-by-name")
+    public String updateCustomerByName(@RequestBody CustomerDTO customerDTO) {
+        String updated = customerService.updateCustomerByName(customerDTO);
+        if (updated != null) {
+            return "Updated";
+        } else {
+            return "Update Failed";
+        }
     }
 
-    @GetMapping(path = "/get-by-id",params = "id")
-    public CustomerDTO getCustomerById(@RequestParam(value="id")int customerId){
+    @GetMapping(path = "/get-by-id", params = "id")
+    public CustomerDTO getCustomerById(@RequestParam(value = "id") int customerId) {
         CustomerDTO customerDTO = customerService.getCustomerByID(customerId);
         return customerDTO;
     }
 
     @GetMapping(path = "/get-all-customers")
-    public List<CustomerDTO> getAllCustomers(){
+    public List<CustomerDTO> getAllCustomers() {
         List<CustomerDTO> allCustomers = customerService.getAllCustomers();
         return allCustomers;
     }
 
     @DeleteMapping(path = "/delete-customer/{id}")
-    public String deleteCustomer(@PathVariable(value = "id")int customerID){
+    public String deleteCustomer(@PathVariable(value = "id") int customerID) {
         String deleteCustomer = customerService.deleteCustomer(customerID);
         return deleteCustomer;
     }
+
+    @PatchMapping(path = "/deactivate-customer-by-name")
+    public String deactivateCustomerByName(@RequestBody CustomerDTO customerDTO) {
+        String deactivateStatus = customerService.deactivateCustomerByName(customerDTO.getCustomerName());
+        return deactivateStatus;
+    }
+
+
 }
