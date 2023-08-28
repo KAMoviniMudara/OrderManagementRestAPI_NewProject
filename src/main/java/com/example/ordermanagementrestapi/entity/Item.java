@@ -14,7 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name = "item")
 @TypeDefs({
-        @TypeDef(name = "json",typeClass = JsonType.class)
+        @TypeDef(name = "json", typeClass = JsonType.class)
 })
 @AllArgsConstructor
 @NoArgsConstructor
@@ -42,12 +42,10 @@ public class Item {
     @Column(name = "seller_price", length = 50, nullable = false)
     private double sellerPrice;
 
-    @Column(name = "active_state", columnDefinition = "TINYINT default 1")
+    @Column(name = "active_state", columnDefinition = "BIT default 1")
     private boolean activeState;
 
-
-    @OneToMany(mappedBy="items")
+    @OneToMany(mappedBy = "items")
     private Set<OrderDetails> orderDetails;
-
 
 }

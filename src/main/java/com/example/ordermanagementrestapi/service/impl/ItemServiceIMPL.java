@@ -2,6 +2,7 @@ package com.example.ordermanagementrestapi.service.impl;
 
 import com.example.ordermanagementrestapi.dto.ItemDTO;
 import com.example.ordermanagementrestapi.dto.request.RequestItemSaveDTO;
+import com.example.ordermanagementrestapi.entity.Customer;
 import com.example.ordermanagementrestapi.entity.Item;
 import com.example.ordermanagementrestapi.repo.ItemRepo;
 import com.example.ordermanagementrestapi.service.ItemService;
@@ -58,7 +59,52 @@ public class ItemServiceIMPL implements ItemService {
         }
     }
 
+    @Override
+    public String updateItemByName(ItemDTO itemDTO) {
+        Item existingItem = itemRepo.findByItemName(itemDTO.getItemName());
 
+        if (existingItem != null) {
+            existingItem.setBalanceQty(itemDTO.getBalanceQty());
+            existingItem.setSupplierPrice(itemDTO.getSupplierPrice());
+            existingItem.setSellerPrice(itemDTO.getSellerPrice());
+
+            itemRepo.save(existingItem);
+            return "Updated";
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public String deactivateItemByName(String itemName) {
+        try {
+            Item item= itemRepo.findByItemName(itemName);
+
+            if (item == null) {
+                return "Item Not Found";
+            }
+
+            item.setActiveState(false);
+            itemRepo.save(item);
+
+            return "Item Deactivated";
+        } catch (Exception e) {
+            return "Deactivation Failed";
+        }
+    }
+
+    @Override
+    public String activateItemByName(String itemName) {
+        Item item = itemRepo.findByItemName(itemName);
+
+        if (item != null) {
+            item.setActiveState(true);
+            itemRepo.save(item);
+            return "Item Activated";
+        } else {
+            return "Item Not Found";
+        }
+    }
 
 
 }
