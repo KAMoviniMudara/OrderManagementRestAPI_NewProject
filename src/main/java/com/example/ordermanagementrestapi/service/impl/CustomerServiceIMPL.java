@@ -2,6 +2,7 @@ package com.example.ordermanagementrestapi.service.impl;
 
 import com.example.ordermanagementrestapi.dto.CustomerDTO;
 import com.example.ordermanagementrestapi.entity.Customer;
+import com.example.ordermanagementrestapi.entity.Item;
 import com.example.ordermanagementrestapi.repo.CustomerRepo;
 import com.example.ordermanagementrestapi.service.CustomerService;
 import org.modelmapper.ModelMapper;
@@ -61,8 +62,6 @@ public class CustomerServiceIMPL implements CustomerService {
             System.out.println("no customer found for that id");
             return  "no customer found for that id";
         }
-
-
     }
 
     @Override
@@ -77,9 +76,6 @@ public class CustomerServiceIMPL implements CustomerService {
         }else{
             return null;
         }
-
-
-
     }
 
     @Override
@@ -138,6 +134,19 @@ public class CustomerServiceIMPL implements CustomerService {
             return "Customer Deactivated";
         } catch (Exception e) {
             return "Deactivation Failed";
+        }
+    }
+
+    @Override
+    public String activateCustomerByName(String customerName) {
+        Customer customer = customerRepo.findByCustomerName(customerName);
+
+        if (customer != null) {
+            customer.setActiveState(true);
+            customerRepo.save(customer);
+            return "Customer Activated";
+        } else {
+            return "Customer Not Found";
         }
     }
 }

@@ -58,5 +58,13 @@ public class CustomerController {
         return deactivateStatus;
     }
 
+    @PatchMapping(path = "/activate-customer-by-name")
+    public String activateItemByName(@RequestBody Map<String, String> requestBody) {
+        String customerName = requestBody.get("customerName");
+
+        String activateStatus = customerService.activateCustomerByName(customerName);
+        return activateStatus;
+    }
+
 
 }
