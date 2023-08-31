@@ -45,6 +45,9 @@ public class Order {
         this.total = total;
         this.customers = customers;
     }
+
+    public void setCustomer(Customer byId) {
+    }
 }
 
 

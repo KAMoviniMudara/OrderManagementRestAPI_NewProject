@@ -24,5 +24,24 @@ public class OrderController {
                 new StandardResponse(201,"2 + Order saved",2), HttpStatus.OK
         );
     }
+
+    @PutMapping("/update/{orderId}")
+    public ResponseEntity<StandardResponse> updateOrder(
+            @PathVariable int orderId,
+            @RequestBody RequestOrderSaveDTO requestOrderSaveDTO
+    ) {
+        boolean updated = orderService.updateOrder(orderId, requestOrderSaveDTO);
+        if (updated) {
+            return new ResponseEntity<>(
+                    new StandardResponse(200, "Order updated successfully", null), HttpStatus.OK
+            );
+        } else {
+            return new ResponseEntity<>(
+                    new StandardResponse(404, "Order not found", null), HttpStatus.NOT_FOUND
+            );
+        }
+    }
+
+
 }
 
