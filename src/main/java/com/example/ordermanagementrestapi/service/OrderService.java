@@ -8,6 +8,6 @@ public interface OrderService {
     String addOrder(RequestOrderSaveDTO requestOrderSaveDTO);
 
 
-    @Transactional
+
     boolean updateOrder(int orderId, RequestOrderSaveDTO requestOrderSaveDTO);
 }

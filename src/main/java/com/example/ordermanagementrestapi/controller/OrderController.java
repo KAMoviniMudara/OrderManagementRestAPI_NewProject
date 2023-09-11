@@ -25,7 +25,7 @@ public class OrderController {
         );
     }
 
-    @PutMapping("/update/{orderId}")
+    @PostMapping("/update/{orderId}")
     public ResponseEntity<StandardResponse> updateOrder(
             @PathVariable int orderId,
             @RequestBody RequestOrderSaveDTO requestOrderSaveDTO
