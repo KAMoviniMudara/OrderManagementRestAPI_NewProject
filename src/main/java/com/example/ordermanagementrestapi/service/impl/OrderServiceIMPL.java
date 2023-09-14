@@ -60,7 +60,6 @@ public class OrderServiceIMPL implements OrderService {
         return null;
     }
 
-
     @Override
     @Transactional
     public boolean updateOrder(int orderId, RequestOrderSaveDTO requestOrderSaveDTO) {
@@ -94,4 +93,16 @@ public class OrderServiceIMPL implements OrderService {
         }
         return false;
     }
+
+
+
+
+    @Override
+    public boolean updateOrderByCustomers(RequestOrderSaveDTO requestOrderSaveDTO) {
+        return false;
+    }
+
+
+
+
 }

@@ -15,4 +15,6 @@ public interface ItemService {
     String deactivateItemByName(String itemName);
 
     String activateItemByName(String itemName);
+
+    List<String> getAllItemNames();
 }

@@ -75,4 +75,12 @@ public class ItemController {
         return activateStatus;
     }
 
+    @GetMapping("/names")
+    public ResponseEntity<List<String>> getItemNames() {
+        List<String> itemNames = itemService.getAllItemNames();
+        return ResponseEntity.ok(itemNames);
+        }
+
+
+
 }

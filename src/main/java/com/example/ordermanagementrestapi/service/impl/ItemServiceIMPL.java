@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ItemServiceIMPL implements ItemService {
     @Autowired
@@ -23,6 +25,7 @@ public class ItemServiceIMPL implements ItemService {
 
     @Autowired
     private ItemMapper itemMapper;
+
 
     @Override
     public void addCustomer(RequestItemSaveDTO requestItemSaveDTO) {
@@ -105,6 +108,15 @@ public class ItemServiceIMPL implements ItemService {
             return "Item Not Found";
         }
     }
+
+    public List<String> getAllItemNames() {
+        List<Item> items = itemRepo.findAll(); // Fetch all items from the database
+        return items.stream()
+                .map(Item::getItemName) // Extract item names from items
+                .collect(Collectors.toList());
+    }
+
+
 
 
 }

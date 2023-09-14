@@ -42,7 +42,7 @@ public class Item {
     @Column(name = "seller_price", length = 50, nullable = false)
     private double sellerPrice;
 
-    @Column(name = "active_state", columnDefinition = "BIT default 1")
+    @Column(name = "active_state", columnDefinition = "TINYINT default 1")
     private boolean activeState;
 
     @OneToMany(mappedBy = "items")
