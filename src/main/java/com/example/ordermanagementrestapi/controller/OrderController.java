@@ -1,7 +1,7 @@
 package com.example.ordermanagementrestapi.controller;
 
 import com.example.ordermanagementrestapi.dto.request.RequestOrderSaveDTO;
-import com.example.ordermanagementrestapi.service.OrderService;
+import com.example.ordermanagementrestapi.Security.service.OrderService;
 import com.example.ordermanagementrestapi.util.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,23 +23,6 @@ public class OrderController {
         return new ResponseEntity<StandardResponse>(
                 new StandardResponse(201,"2 + Order saved",2), HttpStatus.OK
         );
-    }
-
-    @PostMapping("/update/{orderId}")
-    public ResponseEntity<StandardResponse> updateOrder(
-            @PathVariable int orderId,
-            @RequestBody RequestOrderSaveDTO requestOrderSaveDTO
-    ) {
-        boolean updated = orderService.updateOrder(orderId, requestOrderSaveDTO);
-        if (updated) {
-            return new ResponseEntity<>(
-                    new StandardResponse(200, "Order updated successfully", null), HttpStatus.OK
-            );
-        } else {
-            return new ResponseEntity<>(
-                    new StandardResponse(404, "Order not found", null), HttpStatus.NOT_FOUND
-            );
-        }
     }
 
 

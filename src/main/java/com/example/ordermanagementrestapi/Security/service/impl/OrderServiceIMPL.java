@@ -1,5 +1,6 @@
-package com.example.ordermanagementrestapi.service.impl;
+package com.example.ordermanagementrestapi.Security.service.impl;
 
+import com.example.ordermanagementrestapi.Security.service.OrderService;
 import com.example.ordermanagementrestapi.dto.request.RequestOrderDetailsSaveDTO;
 import com.example.ordermanagementrestapi.dto.request.RequestOrderSaveDTO;
 import com.example.ordermanagementrestapi.entity.Order;
@@ -8,7 +9,6 @@ import com.example.ordermanagementrestapi.repo.CustomerRepo;
 import com.example.ordermanagementrestapi.repo.ItemRepo;
 import com.example.ordermanagementrestapi.repo.OrderDetailsRepo;
 import com.example.ordermanagementrestapi.repo.OrderRepo;
-import com.example.ordermanagementrestapi.service.OrderService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @Transactional
@@ -61,48 +60,14 @@ public class OrderServiceIMPL implements OrderService {
     }
 
     @Override
-    @Transactional
-    public boolean updateOrder(int orderId, RequestOrderSaveDTO requestOrderSaveDTO) {
-        if (orderRepo.existsById(orderId)) {
-            Order existingOrder = orderRepo.getById(orderId);
-
-            existingOrder.setDate(requestOrderSaveDTO.getDate());
-            existingOrder.setTotal(requestOrderSaveDTO.getTotal());
-
-            existingOrder.setCustomers(customerRepo.getById(requestOrderSaveDTO.getCustomers()));
-
-            List<OrderDetails> updatedOrderDetails = new ArrayList<>();
-            List<RequestOrderDetailsSaveDTO> requestOrderDetailsList = requestOrderSaveDTO.getOrderDetails();
-
-            for (RequestOrderDetailsSaveDTO requestOrderDetails : requestOrderDetailsList) {
-                OrderDetails orderDetails = new OrderDetails();
-                orderDetails.setAmount(requestOrderDetails.getAmount());
-                orderDetails.setItemName(requestOrderDetails.getItemName());
-                orderDetails.setQty(requestOrderDetails.getQty());
-                orderDetails.setOrders(existingOrder);
-                orderDetails.setItems(itemRepo.getById(requestOrderDetails.getItems()));
-                updatedOrderDetails.add(orderDetails);
-            }
-
-            // Clear existing order details and set the updated ones
-            existingOrder.getOrderDetails().clear();
-            existingOrder.getOrderDetails().addAll(updatedOrderDetails);
-
-            orderRepo.save(existingOrder);
-            return true;
-        }
-        return false;
-    }
-
-
-
-
-    @Override
     public boolean updateOrderByCustomers(RequestOrderSaveDTO requestOrderSaveDTO) {
         return false;
     }
 
-
+    @Override
+    public boolean updateOrder(int orderId, RequestOrderSaveDTO requestOrderSaveDTO) {
+        return false;
+    }
 
 
 }

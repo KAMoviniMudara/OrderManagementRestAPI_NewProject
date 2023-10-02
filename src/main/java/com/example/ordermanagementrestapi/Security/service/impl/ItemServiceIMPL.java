@@ -1,11 +1,10 @@
-package com.example.ordermanagementrestapi.service.impl;
+package com.example.ordermanagementrestapi.Security.service.impl;
 
 import com.example.ordermanagementrestapi.dto.ItemDTO;
 import com.example.ordermanagementrestapi.dto.request.RequestItemSaveDTO;
-import com.example.ordermanagementrestapi.entity.Customer;
 import com.example.ordermanagementrestapi.entity.Item;
 import com.example.ordermanagementrestapi.repo.ItemRepo;
-import com.example.ordermanagementrestapi.service.ItemService;
+import com.example.ordermanagementrestapi.Security.service.ItemService;
 import com.example.ordermanagementrestapi.util.mappers.ItemMapper;
 import com.example.ordermanagementrestapi.exception.NotFoundException;
 import org.modelmapper.ModelMapper;
@@ -23,7 +22,7 @@ public class ItemServiceIMPL implements ItemService {
     @Autowired
     private ModelMapper modelMapper;
 
-    @Autowired
+
     private ItemMapper itemMapper;
 
 

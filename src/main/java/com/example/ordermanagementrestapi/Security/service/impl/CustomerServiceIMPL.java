@@ -1,10 +1,9 @@
-package com.example.ordermanagementrestapi.service.impl;
+package com.example.ordermanagementrestapi.Security.service.impl;
 
 import com.example.ordermanagementrestapi.dto.CustomerDTO;
 import com.example.ordermanagementrestapi.entity.Customer;
-import com.example.ordermanagementrestapi.entity.Item;
 import com.example.ordermanagementrestapi.repo.CustomerRepo;
-import com.example.ordermanagementrestapi.service.CustomerService;
+import com.example.ordermanagementrestapi.Security.service.CustomerService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
