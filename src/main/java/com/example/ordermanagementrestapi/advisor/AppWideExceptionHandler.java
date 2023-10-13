@@ -7,10 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+
 @RestControllerAdvice
 public class AppWideExceptionHandler {
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity handleNotFoundException(NotFoundException e){
-        return new ResponseEntity(new StandardResponse(404,"Error", e.getMessage()), HttpStatus.NOT_FOUND);
+    public ResponseEntity<StandardResponse> handleNotFoundException(NotFoundException e) {
+        StandardResponse response = new StandardResponse(404, "Error", e.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 }
